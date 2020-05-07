@@ -1,0 +1,34 @@
+(defun numbering (l level)
+ ;counts the levels that verify the initial conditions 
+ (cond
+       ((null l) l)
+       ((atom l) 0)
+       ((and (verify (sumlist l)) (not (verify level))) 
+		(+ 1 (apply '+ (mapcar #'(lambda (a) (numbering a (+ 1 level))) l))))
+       (T (apply '+ (mapcar #'(lambda (a) (numbering a (+ 1 level))) l )))
+ )
+ )
+
+ (defun verify (n)
+ ;returns true if the parameter "n" is even, or NIL, otherwise
+ (cond
+      ((numberp n)(= (mod n 2) 0))
+      (T f)
+ )
+ )
+
+ (defun sumlist (l)
+ ;returns the sum of the numerical atoms from a list, at its superficial level
+ (cond
+      ((null l) 0)
+      ((numberp (car l)) (+ (car l) (sumlist(cdr l))))
+      (T (sumlist(cdr l)))
+ )
+ )
+
+ (defun mainNumbering (l)
+ ; main function, for initializing the level with 1
+      (numbering l 1)
+ )
+
+(print (mainNumbering '(a 1 (b 2) (1 c 4) (d 1 (6 f)) ((g 4) 6))))

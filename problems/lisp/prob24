@@ -1,0 +1,9 @@
+(DEFUN transform(L)
+	(cond
+		((null L) nil)
+		((atom (CAR L)) (cons 0 (transform (cdr L))))
+		(t (append L (transform (cdr L))))
+	)
+)
+
+(print(transform '(1 2 3 (4 5) 5 (5 6))))

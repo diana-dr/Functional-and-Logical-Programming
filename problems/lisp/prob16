@@ -1,0 +1,11 @@
+; 11. Write a function to determine the depth of a list.
+
+(DEFUN find_depth(L)
+	(COND
+		((NULL L) 0)
+		((ATOM L) 0)
+		(t (+ 1 (apply #'max (mapcar #'find_depth L))))
+	)
+)
+
+(print (find_depth '(1 2 3 (4 5 (4 4 (5 5))))))

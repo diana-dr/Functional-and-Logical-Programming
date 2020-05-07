@@ -1,0 +1,15 @@
+; write the path from the root to a given node k
+
+(defun find_path (l k)
+  (cond 
+	((null l) nil)
+        ((eq (car l) k) (list k))
+        (t (mapcan #'(lambda (a)
+                     (let ((p (find_path a k))) 
+                       (when p (cons (car l) p)))
+			)
+                   (cdr l)))
+  )
+)
+
+(print (find_path '(a (b (g)) (c (d (e)) (f))) 'e))

@@ -1,0 +1,10 @@
+; 1. Write a function to check if an atom is member of a list (the list is non-liniar)
+
+(DEFUN check(L A)
+	(COND
+		((EQUAL L A) 1)
+		(t (AND (1 (mapcar 'check L A))))
+	)
+)
+
+(trace(check '(1 2 3 (2 3 (4))) 4))

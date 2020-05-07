@@ -1,0 +1,11 @@
+; 7. Write a function that substitutes an element E with all elements of a list L1 at all levels of a given list L.
+
+(DEFUN substitute_(L E L1)
+	(COND
+		((AND (NUMBERP L) (= L E)) L1)
+		((ATOM L) (LIST L))
+		(t (LIST (mapcan '(lambda (L) (substitute_ L E L1)) L)))
+	)
+)
+
+(print (substitute_ '(1 2 3 4 5 3 2 1 1 1) 1 '(1 2 3)))

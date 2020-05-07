@@ -1,0 +1,11 @@
+; 12. Write a function that substitutes an element through another one at all levels of a given list.
+
+(DEFUN sub_elem(L E E1)
+    (COND
+	((AND (NUMBERP L) (= L E)) E1)
+	((NUMBERP L) L)
+	(t (apply 'LIST (mapcar #'(lambda(L) (sub_elem L E E1)) L)))
+    )
+)
+
+(print(sub_elem '(1 2 3 (1 4 5) (1 7 8 (1 9))) 1 0))

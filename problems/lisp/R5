@@ -1,0 +1,22 @@
+; cel mai mare element numeric de la orice nivel este numar par
+
+(defun my_max(l)
+	(cond
+		((null l) -666)
+		((numberp l) l)
+		((atom l) -666)
+		(t (apply 'max (mapcar #'my_max l)))
+	)
+)
+
+(defun find_sublist(l)
+	(cond
+		((null l) 0)
+		((and (listp l) (= 0 (mod (my_max l) 2))) 
+			(+ 1 (apply '+ (mapcar #'find_sublist l))))
+		((atom l) 0)
+		(t (apply '+ (mapcar #'find_sublist l)))
+	)
+)
+
+(print (find_sublist '(a (b 1) (1 c 4) 7 (d 1 (6 f)) (g 4) )))

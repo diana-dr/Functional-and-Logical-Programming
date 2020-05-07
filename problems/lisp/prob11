@@ -1,0 +1,11 @@
+; 2. Write a function that returns the sum of numeric atoms in a list, at any level.
+(DEFUN sum(l)
+	(COND
+		((NULL L) 0)
+		((NUMBERP L) L)
+		((ATOM L) 0)
+		(T (apply '+ (mapcar 'sum L)))
+	)
+)
+
+(PRINT (sum '(1 (1 A (3) (4 5))) ))

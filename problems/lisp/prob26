@@ -1,0 +1,27 @@
+; ultimul atom numeric de la orice nivel este impar => nr de subliste
+(defun reverse_(l)
+	(cond
+	((null l) '())
+	(t (append (reverse_ (cdr l)) (list (car l))))
+	)
+)
+
+(defun give_last_num(l)
+	(cond
+		((null l) 0)
+		((numberp (car l)) (car l))
+		(t (give_last_num (cdr l)))
+	)
+)
+
+(defun find_sublist(l)
+	(cond
+		((null l) 0)
+		((and (listp l) (= 1 (mod (give_last_num (reverse_ l)) 2))) 
+			(+ 1 (apply '+ (mapcar #'find_sublist l))))
+		((atom l) 0)
+		(t (apply '+ (mapcar 'find_sublist l)))
+	)
+)
+
+(print (find_sublist '(a (b 2) (1 c 4) (d 1 (9 f) (7 g)) ((g 7) 6)) ))

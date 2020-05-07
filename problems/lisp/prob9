@@ -1,0 +1,8 @@
+(set 'flowers '(rose violet daisy buttercup))
+
+(print flowers)
+
+(setq carnivores '(lion tiger leopard))
+; (set carnivores '(lion tiger leopard))
+
+(print carnivores)

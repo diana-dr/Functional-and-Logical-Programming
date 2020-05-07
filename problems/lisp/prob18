@@ -1,0 +1,11 @@
+; 14. Write a function that returns the number of atoms in a list, at any level.
+
+(DEFUN count_atoms(L)
+	(COND
+		((NULL L) 0)
+		((ATOM L) 1)
+		(t (apply '+ (mapcar 'count_atoms L)))
+	)
+)
+
+(PRINT (count_atoms '(A B (C D (E) 1 2) 3 P)))

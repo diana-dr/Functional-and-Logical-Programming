@@ -1,0 +1,11 @@
+; a) Write a function that inserts in a linear list a given atom A after the 2nd, 4th, 6th, ... element.
+
+(defun insert_atom(l a pos idx)
+        (cond
+                ((null l) nil)
+                (( = pos idx) (cons (car l) (cons a (insert_atom (cdr l) a (* pos 2) (+ idx 1)))))
+                (t (cons (car l) (insert_atom (cdr l) a pos (+ idx 1))))
+        )
+)
+
+(print (insert_atom '(1 2 3 4 5 6) 2 2 1))     

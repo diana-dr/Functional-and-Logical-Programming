@@ -1,0 +1,22 @@
+(DEFUN F(L)
+	(COND
+		((NULL L) NIL)
+		((LISTP (CAR L)) (APPEND (F (CAR L)) (F (CDR L))))
+		((AND (LISTP (CAR L)) (ATOM (CAR (CAR L)))) 
+			(APPEND (F (CAR L)) (F (CDR L)) (CAR (CAR L))))
+		(T (LIST(CAR L)))
+	)
+)
+
+
+(DEFUN ELIMINATE(L E)
+	(COND
+		((NULL L) NIL)
+		((LISTP (CAR L)) (CONS (ELIMINATE (CAR L) E) (ELIMINATE (CDR L) E)))
+		(T ( if (EQUAL (CAR L) E) 
+			(ELIMINATE (CDR L) E)
+			(CONS (CAR L) (ELIMINATE (CDR L) E))))
+	)
+)
+
+(PRINT(ELIMINATE '(1(1 A(3 A)) (A)) 'A))

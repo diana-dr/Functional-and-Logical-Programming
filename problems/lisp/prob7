@@ -1,0 +1,21 @@
+; c) Write a function that returns the greatest common divisor of all numbers in a nonlinear list.
+
+(DEFUN gcd_ (a b)
+	(COND
+		((AND (NOT (NUMBERP a)) (NOT (NUMBERP b))) NIL)
+        	((NOT (NUMBERP a)) b)
+        	((NOT (NUMBERP b)) a)
+        	((EQUAL b 0) a)
+        	(T (gcd_ b (mod a b)))
+    	)
+)
+
+(DEFUN list_gcd (L)
+	(COND
+		((NULL L) NIL)
+		((LISTP (CAR L)) (gcd_ (list_gcd (CAR L)) (list_gcd (CDR L))))
+		(t (gcd_ (CAR L) (list_gcd (CDR L))))
+	)
+)
+
+(print (list_gcd '(100 350 400 690)))

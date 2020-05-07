@@ -1,0 +1,13 @@
+; 6. Write a function that returns the maximum of numeric atoms in a list, at any level.
+
+(DEFUN maxnum(L)
+	(COND
+		((NULL L) -666)
+		((NUMBERP L) L)
+		((ATOM L) -666)
+		(T (apply 'max (mapcar 'maxnum L)))
+	)
+)
+
+(trace maxnum)
+(print (maxnum '(1 2 3 4 5 6 7 5 4 3)))

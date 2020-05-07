@@ -1,0 +1,12 @@
+;5. Write a function that computes the sum of even numbers and , at any level of a list.
+
+(DEFUN EVEN_SUM(L)
+	(COND
+		((NULL L) 0)
+		((AND (NUMBERP L) (= (MOD L 2) 0)) L)
+		((ATOM L) 0)
+		(T (apply '+ (mapcar 'EVEN_SUM L)))
+	)
+)
+
+(PRINT (EVEN_SUM '(1 2 3 4 5 6 (7 8 (9 10)))))

@@ -1,0 +1,23 @@
+; suma atomilor numerici de la nivelurile impare este numar par
+
+(defun suma(l)
+	(cond
+		((null l) 0)
+		((numberp l) l)
+		((atom l) 0)
+		(t (apply '+ (mapcar #'suma l)))
+	)
+)
+
+
+(defun find_sub(l lvl) 
+	(cond
+		((null l) 0)
+		((atom l) 0)
+		((and (= 1 (mod lvl 2)) (= 0 (mod (suma l) 2)) )
+				(+ 1 (apply '+ (mapcar #'(lambda(a) (find_sub a (+ 1 lvl))) l))) )
+		(t (apply '+ (mapcar #'(lambda(a) (find_sub a (+ 1 lvl))) l)))
+	)
+)
+
+(print (find_sub '(a 1 (b 2) (1 c 4) (d 1 (6 f)) ((g 4) 6)) 1))

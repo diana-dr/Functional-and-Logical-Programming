@@ -1,0 +1,18 @@
+; d) Write a function to transform a linear list into a set.
+
+(defun toset(l)
+	(cond
+		((null l) nil)
+		(T (cons (car l) (toset (remove_ (cdr l) (car l))))) 
+	)
+)
+
+(defun remove_(l e)
+	(cond
+		((null l) nil)
+		(( = (car l) e) (remove_ (cdr l) e))
+		(t (cons (car l) (remove_ (cdr l) e)))
+	)
+)
+
+(print (toset '(1 2 3 4 4 2 4 5 2 3 3 3 3 4 4 5 7 7)))

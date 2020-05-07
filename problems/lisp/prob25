@@ -1,0 +1,8 @@
+; a) Write a function to return the union of two sets.
+
+(defun union(l1 l2)
+	((AND (null l1) (null l2)) nil)
+	((null l1) l2)
+	((null l2) l1)
+	(())
+)

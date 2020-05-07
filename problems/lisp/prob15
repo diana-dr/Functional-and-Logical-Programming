@@ -1,0 +1,11 @@
+; 9. Write a function that removes all occurrences of an atom from any level of a list.
+
+(DEFUN removeatom(L A)
+	(COND
+		((AND (ATOM L) (EQUAL L A)) NIL)
+		((ATOM L) L)
+		(T (apply 'LIST (mapcar #'(lambda (L) (removeatom L A)) L)))
+	)
+)
+
+(print (removeatom '(A B C D A D A F A) 'A))

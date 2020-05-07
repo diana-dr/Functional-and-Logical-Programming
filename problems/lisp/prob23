@@ -1,0 +1,23 @@
+; Sa se determine, in ordine inversa, toate elementele numerice unice din lista data.
+; L= (3 a (b (c (4 (d 5) b 3)) 7)) => R = (7 3 5 4)
+
+(DEFUN occurrences(L e)
+	(COND
+		((NULL L) 0)
+		((AND (NUMBERP L) (= L e)) 1)
+		((ATOM L) 0)
+		(t (apply '+ (mapcar #'(lambda(a) (occurrences a e)) L)))
+	)
+)
+
+(DEFUN show_list(L)
+	(COND
+		((NULL L) nil)
+		((AND (NUMBERP (CAR L)) (= 1 (occurrences L (CAR L)))) 
+			(append (show_list(CDR L)) (list (CAR L))))
+		((LISTP (CAR L)) (append (show_list (CDR L)) (show_list (CAR L))))
+		(t (show_list(CDR L)))
+	)
+)
+
+(print (show_list '(3 a (b (c (4 (d 5) b 3)) 7))))

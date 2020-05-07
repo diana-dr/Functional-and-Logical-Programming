@@ -1,0 +1,20 @@
+; b) Write a function to get from a given list the list of all atoms, on any
+; level, but reverse order. Example:
+; (((A B) C) (D E)) ==> (E D C B A)
+
+(DEFUN create_list(L K)
+	(IF (NULL L) 
+		K
+		(CONS (CAR L) (create_list (CDR L) K))
+	)
+)
+
+(DEFUN reverse_list(L)
+	(COND
+		((NULL L) NIL)
+		((LISTP (CAR L)) (create_list (reverse_list (CDR L)) (reverse_list (CAR L))))
+		(t (create_list (reverse_list (CDR L)) (LIST (CAR L))))
+	)
+)
+
+(print (reverse_list '(1 2 3 (4 5) 6 (7) (8 9))))

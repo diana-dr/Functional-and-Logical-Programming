@@ -1,0 +1,17 @@
+(DEFUN G(L)
+	(+ (CAR L) (CADR L))
+)
+
+(SETQ H 'F)
+(SET H 'G)
+
+
+(DEFUN double_value(L N P)
+	(COND
+		((NULL L) NIL)
+		((= N P) (CONS (CAR L) (CONS (CAR L) (double_value (CDR L) N 1))))
+		(T (CONS (CAR L) (double_value (CDR L) N (+ 1 P))))
+	)
+)
+
+(print (double_value '(1 2 3 4 5) 2 1))

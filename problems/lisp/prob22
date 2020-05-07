@@ -1,0 +1,17 @@
+; 5. sa se det nr sublistelor care au suma elementelor de la toate nivelurilor para. folosind o fc map
+
+(DEFUN suma(L)
+	(COND
+	)
+)
+
+(DEFUN subliste(L)
+	(COND
+		((NULL L) 0)
+		((AND (LISTP L) (= (mod (suma L) 2) 0)) 1)
+		((ATOM L) 0)
+		(t (apply '+ (mapcar #'subliste L)))
+	)
+)
+
+(print (subliste '(1 (2 3) 2 3)))
